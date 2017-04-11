@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SideBar">
+        <attr name="sidebar_background" format="color"/>
+        <attr name="sidebar_background_hint" format="color"/>
+        <attr name="sidebar_textcolor" format="color"/>
+        <attr name="sidebar_textsize" format="dimension"/>
+        <attr name="dialog_textcolor" format="color"/>
+        <attr name="dialog_textsize" format="dimension"/>
+        <attr name="dialog_background" format="color"/>
+        <attr name="dialog_width" format="dimension"/>
+        <attr name="dialog_height" format="dimension"/>
+        <attr name="sidebar_gidits" format="string"/>
+    </declare-styleable>
+</resources>
