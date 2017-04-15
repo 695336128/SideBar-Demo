@@ -23,6 +23,13 @@
 
 ##使用
 
+1. 导入库
+
+```
+compile 'com.github.695336128:SideBar-Demo:v1.0'
+```
+2. 添加控件
+
 ```
    <com.zhang.sidebar_demo.SideBar
         android:id="@+id/sideBar"
@@ -31,5 +38,41 @@
         android:layout_alignParentEnd="true"
         android:layout_gravity="end|center_vertical" />
 ```
+3. Adapter 实现 SectionIndexer 接口，并重写 getPositionForSection 方法
 
-        
+举个栗子：
+
+```
+@Override
+    public int getPositionForSection(int sectionIndex) {
+        CityBean bean ;
+        String firstLetter;
+        if (sectionIndex == '!'){
+            return 0;
+        }else {
+            for (int i = 0; i < mList.size();i++){
+                bean = mList.get(i);
+                // 取首字母
+                firstLetter = PinyinUtils.getPinyinFirstLetter(bean.getCity());
+                char firstChar = firstLetter.toUpperCase().charAt(0);
+                if (firstChar == sectionIndex) {
+                    return i;
+                }
+            }
+        }
+        bean = null;
+        firstLetter = null;
+        return -1;
+    }
+```
+4. 初始化sidebar，并设置 setOnSelecListener 监听
+```
+
+sideBar.setSectionIndexer((SectionIndexer) mRecyclerView.getAdapter());
+        sideBar.setOnSelecListener(new SideBar.onSelecListener() {
+            @Override
+            public void setSelection(int position) {
+                smoothMoveToPosition(mRecyclerView,position);
+            }
+        });
+```
